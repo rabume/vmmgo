@@ -4,7 +4,7 @@ Implementation of vmm (MemProcFS library)
 
 - only supports windows
 - not fully implemented
-- tested with 5.7 version
+- tested with 5.9 version
 
 implemented functions are:
 - basic functions like initialize, close, free, ...

@@ -3,15 +3,12 @@ package vmmgo
 import "unsafe"
 
 func (inst *VMM) MapVad(pid uint32) (*VMMDLL_MAP_VAD, error) {
-	pcbMap := uint32(0)
-	result, _, _ := call("VMMDLL_Map_GetVadU", initializeResult, uintptr(pid), 0, uintptr(unsafe.Pointer(&pcbMap)), 1)
+	data := make([]byte, 0x4000000)
+
+	result, _, _ := call("VMMDLL_Map_GetVadU", initializeResult, uintptr(pid), 1, uintptr(unsafe.Pointer(&data)))
 	if result == 0 {
 		return nil, ERR_CALL
 	}
-
-	data := make([]byte, pcbMap)
-
-	result, _, _ = call("VMMDLL_Map_GetVadU", initializeResult, uintptr(pid), uintptr(unsafe.Pointer(&data[0])), uintptr(unsafe.Pointer(&pcbMap)), 1)
 
 	oneElement := (*vMMDLL_MAP_VAD)(unsafe.Pointer(&data[0]))
 
