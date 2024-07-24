@@ -1,3 +1,3 @@
-module github.com/pineda89/vmmgo
+module github.com/rabume/vmmgo
 
 go 1.20
